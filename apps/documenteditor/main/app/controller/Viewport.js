@@ -48,7 +48,8 @@ define([
     'documenteditor/main/app/view/LeftMenu'
 ], function (Viewport) {
     'use strict';
-
+    // debugger;
+    console.log('---加载控制器controllers/Viewport.js')
     DE.Controllers.Viewport = Backbone.Controller.extend(_.assign({
         // Specifying a Viewport model
         models: [],
@@ -65,7 +66,7 @@ define([
         // When controller is created let's setup view event listeners
         initialize: function() {
             // This most important part when we will tell our controller what events should be handled
-
+            debugger;
             var me = this;
             this.addListeners({
                 'FileMenu': {
@@ -128,9 +129,10 @@ define([
 
         // When our application is ready, lets get started
         onLaunch: function() {
+            debugger;
             // Create and render main view
             this.viewport = this.createView('Viewport').render();
-
+            debugger;
             this.api = new Asc.asc_docs_api({
                 'id-view'  : 'editor_sdk',
                 'translate': this.getApplication().getController('Main').translationTable

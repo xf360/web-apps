@@ -90,6 +90,8 @@
         },
 
         start: function() {
+            debugger;
+            console.log('---5.1 backone应用启动:')
             // initialize controllers
             this.initializeControllers(this.controllers || {});
             // call to controller.onLaunch callback

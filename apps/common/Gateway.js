@@ -157,6 +157,7 @@ if (window.Common === undefined) {
         };
 
         var _postMessage = function(msg) {
+            debugger;//发送消息到调用方
             // TODO: specify explicit origin
             if (window.parent && window.JSON) {
                 msg.frameEditorId = window.frameEditorId;
@@ -165,6 +166,8 @@ if (window.Common === undefined) {
         };
 
         var _onMessage = function(msg) {
+            debugger;
+            console.log("gateway.js 收到消息")
             // TODO: check message origin
             if (msg.origin !== window.parentOrigin && msg.origin !== window.location.origin && !(msg.origin==="null" && (window.parentOrigin==="file://" || window.location.origin==="file://"))) return;
 

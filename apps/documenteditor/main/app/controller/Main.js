@@ -159,6 +159,7 @@ define([
             },
 
             onLaunch: function() {
+                console.log('controllers/main加载')
                 var me = this;
 
                 this.stackLongActions = new Common.IrregularStack({
@@ -247,6 +248,8 @@ define([
                     Common.Gateway.on('showmessage',    _.bind(this.onExternalMessage, this));
                     Common.Gateway.on('opendocument',   _.bind(this.loadDocument, this));
                     Common.Gateway.on('grabfocus',      _.bind(this.onGrabFocus, this));
+                    //触发appready事件
+                    console.log('触发appready事件')
                     Common.Gateway.appReady();
 
 //                $(window.top).resize(_.bind(this.onDocumentResize, this));
@@ -491,6 +494,8 @@ define([
             },
 
             loadDocument: function(data) {
+                console.log('loadDocument加载文档')
+                debugger;
                 this.permissions = {};
                 this.document = data.doc;
 
@@ -1189,6 +1194,8 @@ define([
             },
 
             onDocumentContentReady: function() {
+                debugger;
+                console.log('onDocumentContentReady')
                 if (this._isDocReady)
                     return;
 

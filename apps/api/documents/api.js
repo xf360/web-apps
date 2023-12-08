@@ -6,6 +6,8 @@
 
 ;(function(DocsAPI, window, document, undefined) {
 
+    // debugger;//1
+    console.log('---1.api初始化:')
     /*
 
         # Full #
@@ -318,12 +320,15 @@
     */
 
     // TODO: allow several instances on one page simultaneously
-
+    //编辑器初始化
     DocsAPI.DocEditor = function(placeholderId, config) {
+        // debugger;//2.
+        console.log('---2.构建编辑器iframe:')
         var _self = this,
             _config = config || {};
-
+        //生成配置
         extend(_config, DocsAPI.DocEditor.defaultConfig);
+        //
         _config.editorConfig.canUseHistory = _config.events && !!_config.events.onRequestHistory;
         _config.editorConfig.canHistoryClose = _config.events && !!_config.events.onRequestHistoryClose;
         _config.editorConfig.canHistoryRestore = _config.events && !!_config.events.onRequestRestore;
@@ -395,6 +400,7 @@
         };
 
         var _onMessage = function(msg) {
+            console.log('收到消息',msg);//编辑器发过来的消息
             if ( msg ) {
                 if ( msg.type === "onExternalPluginMessage" ) {
                     _sendCommand(msg);
@@ -509,7 +515,7 @@
             iframe;
 
         if (target && _checkConfigParams()) {
-            iframe = createIframe(_config);
+            iframe = createIframe(_config);//创建编辑器iframe
             if (_config.editorConfig.customization && _config.editorConfig.customization.integrationMode==='embed')
                 window.AscEmbed && window.AscEmbed.initWorker(iframe);
 
@@ -517,7 +523,8 @@
                 var pathArray = iframe.src.split('/');
                 this.frameOrigin = pathArray[0] + '//' + pathArray[2];
             }
-            target.parentNode && target.parentNode.replaceChild(iframe, target);
+            target.parentNode && target.parentNode.replaceChild(iframe, target);//将iframe编辑器插入当前文档
+            //绑定事件3.
             var _msgDispatcher = new MessageDispatcher(_onMessage, this);
         }
 
@@ -792,7 +799,6 @@
                 }
             });
         };
-
         return {
             showMessage         : _showMessage,
             processSaveResult   : _processSaveResult,
@@ -843,11 +849,12 @@
     DocsAPI.DocEditor.version = function() {
         return '{{PRODUCT_VERSION}}';
     };
-
+    //绑定事件
     MessageDispatcher = function(fn, scope) {
         var _fn     = fn,
             _scope  = scope || window,
             eventFn = function(msg) {
+                // debugger;//iframe编辑器加载完成 1-1
                 _onMessage(msg);
             };
 
@@ -923,7 +930,7 @@
 
         return "";
     }
-
+    //获取对应编辑器路径
     function getAppPath(config) {
         var extensionPath = getExtensionPath(),
             path = extensionPath ? extensionPath : (config.type=="test" ? getTestPath() : getBasePath()),
@@ -1036,7 +1043,7 @@
 
         return params;
     }
-
+    //创建编辑器iframe
     function createIframe(config) {
         var iframe = document.createElement("iframe");
 
@@ -1061,6 +1068,7 @@
         return iframe;
     }
 
+    //向子窗体（编辑器）发送消息
     function postMessage(wnd, msg) {
         if (wnd && wnd.postMessage && window.JSON) {
             // TODO: specify explicit origin

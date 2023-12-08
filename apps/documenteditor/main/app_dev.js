@@ -210,6 +210,7 @@ require([
                 ,'common/main/lib/controller/Draw'
             ], function() {
                 window.compareVersions = true;
+                console.log('---5.应用启动:')
                 app.start();
             });
         }

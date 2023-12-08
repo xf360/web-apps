@@ -47,7 +47,8 @@ define([
     'common/main/lib/component/Layout'
 ], function (viewportTemplate, $, _, Backbone) {
     'use strict';
-
+    // debugger;
+    console.log('---加载控制器view/Viewport.js')
     DE.Views.Viewport = Backbone.View.extend({
         el: '#viewport',
 
@@ -65,6 +66,7 @@ define([
 
         // Render layout
         render: function() {
+            debugger;
             this.$el.html(this.template({}));
 
             // Workaround Safari's scrolling problem
@@ -79,6 +81,7 @@ define([
             }
 
             var $container = $('#viewport-vbox-layout', this.$el);
+            //页面主体框架
             this.vlayout = new Common.UI.VBoxLayout({
                 box: $container,
                 items: [{
@@ -100,7 +103,7 @@ define([
                     }
                 ]
             });
-
+            //编辑器主体框架
             $container = $('#viewport-hbox-layout', this.$el);
             var items = $container.find(' > .layout-item');
             let iarray = [{ // left menu chat & comment
