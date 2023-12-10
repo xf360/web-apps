@@ -24,4 +24,7 @@ js入口：apps/api/documents/api.js
 12.callback url http://localhost/example/track?filename=new.docx&useraddress=172.17.0.1
 
 13.使用window.io或 socketio 和后端建立连接链接地址：/7.5.1-23/web-apps/apps/documenteditor/main/../../../../doc/172.17.0.1new.docx121701950543362/c（ws://localhost/7.5.1-23/doc/172.17.0.1new.docx121701950543362/c/）
-14.ws 服务会将文档docx转为bin文件，然后把下载路径返回给前端，前端在下载该bin文档打开。
+14.ws 服务（server项目canvasservice.js文件）会将文档docx转为bin文件，然后把下载路径返回给前端，前端在下载该bin文档打开。
+15.word 正文渲染为文件 word\Drawing\HtmlPage.js 中的OnPaint方法
+16.OnPaint按元素类型调用各自的draw方法绘制canvas（段落调用word\Editor\Paragraph.js的draw方法，table调用word\Editor\Table\TableDraw.js的draw方法）
+17.字符渲染是通过字符的unicode编码在对应的字库中找到字符，然后转为图片，字体管理js： common\libfont\manager.js
