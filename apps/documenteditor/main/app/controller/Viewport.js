@@ -66,7 +66,7 @@ define([
         // When controller is created let's setup view event listeners
         initialize: function() {
             // This most important part when we will tell our controller what events should be handled
-            debugger;
+            // debugger;
             var me = this;
             this.addListeners({
                 'FileMenu': {
@@ -129,10 +129,10 @@ define([
 
         // When our application is ready, lets get started
         onLaunch: function() {
-            debugger;
+            // debugger;
             // Create and render main view
             this.viewport = this.createView('Viewport').render();
-            debugger;
+            // debugger;
             this.api = new Asc.asc_docs_api({
                 'id-view'  : 'editor_sdk',
                 'translate': this.getApplication().getController('Main').translationTable

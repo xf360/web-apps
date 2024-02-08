@@ -495,7 +495,7 @@ define([
 
             loadDocument: function(data) {
                 console.log('loadDocument加载文档')
-                debugger;
+                // debugger;
                 this.permissions = {};
                 this.document = data.doc;
 
@@ -1194,7 +1194,7 @@ define([
             },
 
             onDocumentContentReady: function() {
-                debugger;
+                // debugger;
                 console.log('onDocumentContentReady')
                 if (this._isDocReady)
                     return;

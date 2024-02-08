@@ -276,7 +276,7 @@ define([
 
         onChangeRulers: function (btn, checked) {
             console.log('切换是否显示标尺');
-            debugger;
+            // debugger;
             Common.localStorage.setBool('de-hidden-rulers', !checked);
             Common.Utils.InternalSettings.set("de-hidden-rulers", !checked);
             this.api.asc_SetViewRulers(checked);

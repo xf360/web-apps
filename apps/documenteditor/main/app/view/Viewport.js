@@ -66,7 +66,7 @@ define([
 
         // Render layout
         render: function() {
-            debugger;
+            // debugger;
             this.$el.html(this.template({}));
 
             // Workaround Safari's scrolling problem
